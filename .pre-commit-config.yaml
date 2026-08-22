@@ -1,0 +1,20 @@
+# prek config file — https://prek.j178.dev/
+# Install: prek install -f     Run all: prek run --all-files
+repos:
+- repo: https://github.com/betterleaks/betterleaks
+  rev: v1.1.1
+  hooks:
+  - id: betterleaks
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v6.0.0
+  hooks:
+  - id: check-added-large-files
+    args: [ "--maxkb=500" ]
+  - id: check-yaml
+  - id: check-json
+    exclude: ^tsconfig.*\.json$   # TS configs are JSONC (comments, trailing commas)
+  - id: end-of-file-fixer
+  - id: mixed-line-ending
+  - id: trailing-whitespace
+    exclude: ^mockups/

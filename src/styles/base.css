@@ -1,0 +1,43 @@
+@import './tokens.css';
+@import './keyframes.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { margin: 0; min-height: 100%; }
+body {
+  background: var(--sky);
+  font-family: var(--font);
+  color: var(--blue-text);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+a { color: var(--blue); }
+a:hover { color: var(--blue-hover); }
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(var(--sky) var(--sand-stop, 62%), var(--sand) var(--sand-stop, 62%));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.screen-pop { animation: ph-pop 0.35s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-idle, .motion-confetti { animation: none !important; }
+}

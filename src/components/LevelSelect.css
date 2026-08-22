@@ -1,0 +1,67 @@
+.levels {
+  --sand-stop: 70%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 22px 24px 28px;
+}
+.levels__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.levels__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 22px;
+  color: #fff;
+  text-shadow: 0 3px 0 var(--blue);
+}
+.levels__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 26px;
+}
+.level-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  border-radius: var(--radius-card);
+  padding: 14px 8px 10px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s;
+}
+.level-card:hover { transform: translateY(-3px); }
+.level-card--locked {
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: none;
+  cursor: default;
+}
+.level-card--locked:hover { transform: none; }
+.level-card__num {
+  font-weight: 900;
+  font-size: 26px;
+  color: var(--blue);
+  line-height: 1.2;
+}
+.level-card--locked .level-card__num { color: var(--muted); }
+.level-card__stars {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--gold-alt);
+  min-height: 17px;
+}
+.level-card__sub {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+}
+.levels__spacer { flex: 1; }
+.levels__fox { margin-top: 24px; }

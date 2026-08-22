@@ -1,0 +1,57 @@
+.title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 34px 26px 34px;
+  position: relative;
+}
+.title__controls {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+}
+.title__wordmark {
+  margin: 40px 0 0;
+  font-weight: 900;
+  font-size: min(56px, 13vw);
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 4px 0 var(--blue);
+  text-align: center;
+  transform: rotate(-3deg);
+}
+.title__penny {
+  margin-top: 22px;
+  transform: rotate(12deg);
+  animation: ph-bounce 2.4s ease infinite;
+}
+.title__fox {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  margin-top: 10px;
+}
+.title__fox-img {
+  height: min(300px, 38vh);
+  width: auto;
+  animation: ph-idle 3s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+.title__footer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  width: 100%;
+  padding-top: 16px;
+}
+.title__stats {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--amber-text);
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Press+Start+2P&family=Nunito:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#f0eee9;font-family:system-ui,sans-serif}a{color:#2a78d6}a:hover{color:#1a5cab}.dv-turn{padding:40px 44px 32px;scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}</style></helmet>
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Penny Hunt! — full screen set in the <a class="dv-oid" href="#1d">1d</a> style (everyone, stars &amp; levels, host character, responsive)</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="2a">
+  <div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Title screen</div>
+  <div class="dv-card" style="width:380px">
+    <div style="display:flex;flex-direction:column;align-items:center;min-height:520px;background:linear-gradient(#8fd2f7 62%,#f7d98b 62%);padding:34px 26px 30px;position:relative">
+      <div style="display:flex;gap:6px;position:absolute;top:16px;right:16px">
+        <div style="width:38px;height:38px;border-radius:50%;background:#fff;box-shadow:0 3px 0 rgba(58,143,196,.5);display:flex;align-items:center;justify-content:center;font-size:16px">🔊</div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#fff;box-shadow:0 3px 0 rgba(58,143,196,.5);display:flex;align-items:center;justify-content:center;font-size:16px">⚙️</div>
+      </div>
+      <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:42px;line-height:1;color:#fff;text-shadow:0 4px 0 #3a8fc4;text-align:center;transform:rotate(-3deg);margin-top:26px">Penny<br>Hunt!</div>
+      <div style="width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd98a,#e09b3d);border:4px solid #fff;box-shadow:0 4px 0 rgba(160,100,20,.35);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:19px;color:#8a5a14;margin-top:18px;transform:rotate(12deg)">1¢</div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:14px;width:100%">
+        <div style="display:flex;align-items:flex-end;gap:8px">
+          <div style="width:72px;height:72px;border-radius:50%;background:#fff;border:4px solid #ffb35c;display:flex;align-items:center;justify-content:center;font-size:38px">🦊</div>
+          <div style="background:#fff;border-radius:14px 14px 14px 3px;padding:10px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:#3a6a8c;box-shadow:0 3px 0 rgba(58,143,196,.35);max-width:180px">Think you can keep up with these paws?</div>
+        </div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#fff;background:linear-gradient(#5ecf70,#38a84e);padding:15px 58px;border-radius:100px;box-shadow:0 6px 0 #237a35;white-space:nowrap">Play!</div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:#a3641c">Best streak: 7 · ⭑ 42</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="2b">
+  <div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Level select — cups added, tricks unlocked as you go</div>
+  <div class="dv-card" style="width:380px">
+    <div style="display:flex;flex-direction:column;min-height:520px;background:linear-gradient(#8fd2f7 70%,#f7d98b 70%);padding:22px 24px 28px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="width:38px;height:38px;border-radius:50%;background:#fff;box-shadow:0 3px 0 rgba(58,143,196,.5);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;color:#3a8fc4">←</div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#fff;text-shadow:0 3px 0 #3a8fc4">Pick a level</div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:#a3641c;background:#ffe9b8;border:3px solid #fff;border-radius:100px;padding:5px 12px;box-shadow:0 3px 0 rgba(58,143,196,.5)">⭑ 42</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px;background:#fff;border-radius:18px;padding:14px 8px 10px;box-shadow:0 4px 0 rgba(58,143,196,.4)"><div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;color:#3a8fc4">1</div><div style="font-size:12px;letter-spacing:1px">⭑⭑⭑</div><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;color:#8fa8ba">3 cups</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px;background:#fff;border-radius:18px;padding:14px 8px 10px;box-shadow:0 4px 0 rgba(58,143,196,.4)"><div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;color:#3a8fc4">2</div><div style="font-size:12px;letter-spacing:1px">⭑⭑</div><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;color:#8fa8ba">3 cups</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px;background:#fff;border-radius:18px;padding:14px 8px 10px;box-shadow:0 4px 0 rgba(58,143,196,.4);border:3px solid #ffb35c"><div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;color:#f4602e">3</div><div style="font-size:12px;letter-spacing:1px;opacity:.25">⭑⭑⭑</div><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;color:#f4602e">4 cups</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(255,255,255,.55);border-radius:18px;padding:14px 8px 10px"><div style="font-size:20px">🔒</div><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;color:#8fa8ba">4 cups + tricks</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(255,255,255,.55);border-radius:18px;padding:14px 8px 10px"><div style="font-size:20px">🔒</div><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;color:#8fa8ba">5 cups</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(255,255,255,.55);border-radius:18px;padding:14px 8px 10px"><div style="font-size:20px">🔒</div><div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;color:#8fa8ba">5 cups + tricks</div></div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:flex-end;gap:8px">
+        <div style="width:58px;height:58px;border-radius:50%;background:#fff;border:4px solid #ffb35c;display:flex;align-items:center;justify-content:center;font-size:30px">🦊</div>
+        <div style="background:#fff;border-radius:14px 14px 14px 3px;padding:9px 13px;font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;color:#3a6a8c;box-shadow:0 3px 0 rgba(58,143,196,.35)">Level 3 is where I start playing dirty…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="2c">
+  <div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Game table, desktop — level 3, four cups, distraction trick mid-shuffle</div>
+  <div class="dv-card" style="width:560px">
+    <div style="display:flex;flex-direction:column;min-height:420px;background:linear-gradient(#8fd2f7 60%,#f7d98b 60%);padding:18px 26px 26px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 3px 0 rgba(58,143,196,.5);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;color:#3a8fc4;font-size:14px">‖</div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;color:#fff;text-shadow:0 2px 0 #3a8fc4">Level 3</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:#a3641c;background:#ffe9b8;border:3px solid #fff;border-radius:100px;padding:5px 12px;box-shadow:0 3px 0 rgba(58,143,196,.5)">⭑ 42</div>
+          <div style="width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 3px 0 rgba(58,143,196,.5);display:flex;align-items:center;justify-content:center;font-size:14px">🔊</div>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;align-items:flex-end;justify-content:center;gap:24px;padding:34px 0 6px">
+        <div style="width:84px;height:88px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px;transform:rotate(-4deg) translateX(6px)"></div>
+        <div style="width:84px;height:88px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px;transform:translateY(-10px)"></div>
+        <div style="width:84px;height:88px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px;transform:rotate(5deg) translateX(-4px)"></div>
+        <div style="width:84px;height:88px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px"></div>
+      </div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:10px">
+        <div style="display:flex;align-items:flex-end;gap:8px">
+          <div style="width:62px;height:62px;border-radius:50%;background:#fff;border:4px solid #ffb35c;display:flex;align-items:center;justify-content:center;font-size:32px">🦊</div>
+          <div style="background:#fff;border-radius:14px 14px 14px 3px;padding:9px 13px;font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;color:#3a6a8c;box-shadow:0 3px 0 rgba(58,143,196,.35);max-width:190px">Whoa, is that a seagull with your sandwich?! 👀</div>
+        </div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;color:#fff;background:#b8c7d1;padding:11px 26px;border-radius:100px;box-shadow:0 4px 0 #93a5b1;white-space:nowrap">Shuffling…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="2d">
+  <div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>Win celebration</div>
+  <div class="dv-card" style="width:380px">
+    <div style="display:flex;flex-direction:column;align-items:center;min-height:480px;background:linear-gradient(#8fd2f7 62%,#f7d98b 62%);padding:30px 26px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:14px;left:36px;font-size:18px;transform:rotate(-15deg)">🎉</div>
+      <div style="position:absolute;top:44px;right:44px;font-size:14px;transform:rotate(20deg)">✨</div>
+      <div style="position:absolute;top:90px;left:70px;font-size:12px;transform:rotate(10deg)">🎊</div>
+      <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:30px;color:#fff;text-shadow:0 3px 0 #d68a2e;margin-top:8px">You found it!</div>
+      <div style="display:flex;gap:8px;font-size:34px;margin-top:12px;color:#ffd23e;text-shadow:0 3px 0 #d68a2e"><span>⭑</span><span style="transform:translateY(-8px)">⭑</span><span>⭑</span></div>
+      <div style="display:flex;flex-direction:column;align-items:center;margin-top:22px">
+        <div style="width:96px;height:100px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:10px;transform:translateY(-34px) rotate(9deg)"></div>
+        <div style="width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd98a,#e09b3d);border:4px solid #fff;box-shadow:0 4px 0 rgba(160,100,20,.35);margin-top:-28px;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;color:#8a5a14">1¢</div>
+      </div>
+      <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:#a3641c;margin-top:12px">+5 stars · streak 4</div>
+      <div style="flex:1"></div>
+      <div style="display:flex;flex-direction:column;gap:10px;width:100%;align-items:center">
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;color:#fff;background:linear-gradient(#5ecf70,#38a84e);padding:13px 46px;border-radius:100px;box-shadow:0 5px 0 #237a35;white-space:nowrap">Next round →</div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:#3a8fc4;background:#fff;padding:10px 26px;border-radius:100px;box-shadow:0 3px 0 rgba(58,143,196,.5)">Level select</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="2e">
+  <div class="dv-olabel"><a class="dv-oid" href="#2e">2e</a>Miss — friendly retry, no punishment</div>
+  <div class="dv-card" style="width:380px">
+    <div style="display:flex;flex-direction:column;align-items:center;min-height:480px;background:linear-gradient(#8fd2f7 62%,#f7d98b 62%);padding:30px 26px">
+      <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;color:#fff;text-shadow:0 3px 0 #3a8fc4;margin-top:8px">So close!</div>
+      <div style="display:flex;align-items:flex-end;justify-content:center;gap:22px;margin-top:36px">
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <div style="width:80px;height:84px;background:linear-gradient(#c9d4dc,#9fb0bc);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px;transform:translateY(-30px) rotate(-8deg)"></div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;color:#7d95a6;margin-top:-18px">your pick</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <div style="width:80px;height:84px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px;transform:translateY(-30px) rotate(8deg)"></div>
+          <div style="width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd98a,#e09b3d);border:4px solid #fff;box-shadow:0 4px 0 rgba(160,100,20,.35);margin-top:-28px;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;color:#8a5a14">1¢</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:flex-end;gap:8px;margin-top:26px">
+        <div style="width:58px;height:58px;border-radius:50%;background:#fff;border:4px solid #ffb35c;display:flex;align-items:center;justify-content:center;font-size:30px">🦊</div>
+        <div style="background:#fff;border-radius:14px 14px 14px 3px;padding:9px 13px;font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;color:#3a6a8c;box-shadow:0 3px 0 rgba(58,143,196,.35);max-width:180px">It was one over! Watch my paws this time.</div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="display:flex;flex-direction:column;gap:10px;width:100%;align-items:center">
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;color:#fff;background:linear-gradient(#5ecf70,#38a84e);padding:13px 46px;border-radius:100px;box-shadow:0 5px 0 #237a35;white-space:nowrap">Try again</div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:#3a8fc4;background:#fff;padding:10px 26px;border-radius:100px;box-shadow:0 3px 0 rgba(58,143,196,.5)">Level select</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="2f">
+  <div class="dv-olabel"><a class="dv-oid" href="#2f">2f</a>Settings — sound toggle (default on), shuffle speed</div>
+  <div class="dv-card" style="width:380px">
+    <div style="display:flex;flex-direction:column;min-height:420px;background:linear-gradient(#8fd2f7 70%,#f7d98b 70%);padding:22px 24px 28px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="width:38px;height:38px;border-radius:50%;background:#fff;box-shadow:0 3px 0 rgba(58,143,196,.5);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;color:#3a8fc4">←</div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#fff;text-shadow:0 3px 0 #3a8fc4">Settings</div>
+        <div style="width:38px"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:18px;padding:16px 18px;box-shadow:0 4px 0 rgba(58,143,196,.4)">
+          <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:#3a6a8c;white-space:nowrap">🔊 Sound</div>
+          <div style="width:58px;height:32px;border-radius:100px;background:#5ecf70;position:relative"><div style="width:26px;height:26px;border-radius:50%;background:#fff;position:absolute;top:3px;right:3px;box-shadow:0 2px 3px rgba(0,0,0,.2)"></div></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;background:#fff;border-radius:18px;padding:16px 18px;box-shadow:0 4px 0 rgba(58,143,196,.4)">
+          <div style="display:flex;justify-content:space-between"><div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:#3a6a8c;white-space:nowrap">🌀 Shuffle speed</div><div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:#f4602e">Zippy</div></div>
+          <div style="height:12px;border-radius:100px;background:#e4eef5;position:relative"><div style="width:65%;height:100%;border-radius:100px;background:linear-gradient(90deg,#ffb35c,#f4602e)"></div><div style="width:24px;height:24px;border-radius:50%;background:#fff;border:4px solid #f4602e;position:absolute;top:-8px;left:62%"></div></div>
+          <div style="display:flex;justify-content:space-between;font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;color:#8fa8ba"><span>Chill</span><span>Zippy</span><span>Chaos</span></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border-radius:18px;padding:16px 18px;box-shadow:0 4px 0 rgba(58,143,196,.4)">
+          <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:#3a6a8c;white-space:nowrap">🗑️ Reset progress</div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;color:#c0402a;border:2px solid #c0402a;border-radius:100px;padding:6px 14px">Reset</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="2g">
+  <div class="dv-olabel"><a class="dv-oid" href="#2g">2g</a>Mobile game table — cups stack tighter, host tucks under</div>
+  <div class="dv-card" style="width:280px">
+    <div style="display:flex;flex-direction:column;min-height:520px;background:linear-gradient(#8fd2f7 58%,#f7d98b 58%);padding:16px 16px 22px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:#fff;text-shadow:0 2px 0 #3a8fc4">Level 3</div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:11px;color:#a3641c;background:#ffe9b8;border:2px solid #fff;border-radius:100px;padding:4px 9px">⭑ 42</div>
+          <div style="width:30px;height:30px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px">🔊</div>
+        </div>
+      </div>
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:18px 14px;align-items:end;justify-items:center;padding:30px 8px 8px">
+        <div style="width:88px;height:92px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px"></div>
+        <div style="width:88px;height:92px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px"></div>
+        <div style="width:88px;height:92px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px"></div>
+        <div style="width:88px;height:92px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:8px"></div>
+      </div>
+      <div style="text-align:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;color:#fff;text-shadow:0 2px 0 #d68a2e;padding:8px 0 10px">Tap the cup with the penny!</div>
+      <div style="display:flex;align-items:flex-end;gap:6px">
+        <div style="width:48px;height:48px;border-radius:50%;background:#fff;border:3px solid #ffb35c;display:flex;align-items:center;justify-content:center;font-size:24px">🦊</div>
+        <div style="background:#fff;border-radius:12px 12px 12px 3px;padding:8px 11px;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;color:#3a6a8c;box-shadow:0 2px 0 rgba(58,143,196,.35)">No pressure. Okay, a little pressure.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "build this as a playable prototype" · "different host character than the raccoon" · "show what a distraction trick looks like mid-game"</p>
+</section>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Shell game — 5 visual directions (3 cups, 1 penny, browser play)</span></div>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+  <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Carnival felt table — classic boardwalk hustle</div>
+  <div class="dv-card" style="width:520px;background:#12100c">
+    <div style="display:flex;flex-direction:column;background:radial-gradient(ellipse at 50% 30%, #1d6b45, #0e3d27 75%);min-height:400px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:2px solid rgba(212,175,55,.35)">
+        <div style="font-family:'Alfa Slab One',serif;font-size:22px;color:#e8c85a;text-shadow:0 2px 0 rgba(0,0,0,.5);letter-spacing:1px">FIND THE PENNY</div>
+        <div style="display:flex;gap:14px;font-family:'Libre Caslon Text',serif;font-size:12px;color:#f3ead2">
+          <span>Round <b style="color:#e8c85a">4</b></span><span>Streak <b style="color:#e8c85a">3</b></span>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;align-items:flex-end;justify-content:center;gap:44px;padding:44px 30px 12px">
+        <div style="width:96px;height:110px;background:linear-gradient(160deg,#c8412e,#7e2015);clip-path:polygon(18% 0,82% 0,100% 100%,0 100%);border-radius:4px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:96px;height:110px;background:linear-gradient(160deg,#c8412e,#7e2015);clip-path:polygon(18% 0,82% 0,100% 100%,0 100%);transform:translateY(-34px) rotate(-6deg)"></div>
+          <div style="width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e8a25e,#9a5b28 70%);box-shadow:0 3px 8px rgba(0,0,0,.6), inset 0 0 0 3px rgba(255,255,255,.15);margin-top:-40px;display:flex;align-items:center;justify-content:center;font-family:'Libre Caslon Text',serif;font-size:9px;color:#5e3413">1¢</div>
+        </div>
+        <div style="width:96px;height:110px;background:linear-gradient(160deg,#c8412e,#7e2015);clip-path:polygon(18% 0,82% 0,100% 100%,0 100%);border-radius:4px"></div>
+      </div>
+      <div style="text-align:center;font-family:'Libre Caslon Text',serif;font-style:italic;font-size:13px;color:#d9cfa8;padding:6px 0 14px">You found it! Double or nothing?</div>
+      <div style="display:flex;gap:12px;justify-content:center;padding:0 22px 24px">
+        <div style="font-family:'Alfa Slab One',serif;font-size:14px;color:#0e3d27;background:linear-gradient(#f2d574,#d4af37);padding:11px 26px;border-radius:6px;box-shadow:0 3px 0 #8a6d1c">SHUFFLE AGAIN</div>
+        <div style="font-family:'Alfa Slab One',serif;font-size:14px;color:#e8c85a;border:2px solid rgba(212,175,55,.5);padding:9px 22px;border-radius:6px">WALK AWAY</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="1b">
+  <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Minimal studio — flat, quiet, modern</div>
+  <div class="dv-card" style="width:520px;background:#faf9f6">
+    <div style="display:flex;flex-direction:column;min-height:400px;padding:26px 30px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:#1c1b18;letter-spacing:-.02em">Shell.</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:12px;color:#8b877d">Round 4 · 3 correct</div>
+      </div>
+      <div style="flex:1;display:flex;align-items:flex-end;justify-content:center;gap:52px;padding:56px 0 8px">
+        <div style="width:88px;height:100px;background:#1c1b18;clip-path:polygon(16% 0,84% 0,100% 100%,0 100%)"></div>
+        <div style="width:88px;height:100px;background:#1c1b18;clip-path:polygon(16% 0,84% 0,100% 100%,0 100%);opacity:.16"></div>
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <div style="width:88px;height:100px;background:#1c1b18;clip-path:polygon(16% 0,84% 0,100% 100%,0 100%);transform:translateY(-40px)"></div>
+          <div style="width:36px;height:36px;border-radius:50%;background:#c47b3a;margin-top:-32px"></div>
+        </div>
+      </div>
+      <div style="height:1px;background:#e4e1d8;margin:20px 0 16px"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:13px;color:#55524a">Correct. The penny was under cup 3.</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:13px;color:#faf9f6;background:#1c1b18;padding:10px 20px;border-radius:100px">Next round →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="1c">
+  <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Retro arcade — CRT pixel cabinet</div>
+  <div class="dv-card" style="width:520px;background:#0a0a14">
+    <div style="display:flex;flex-direction:column;min-height:400px;background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,transparent 2px 4px),#101024;padding:22px 26px">
+      <div style="display:flex;justify-content:space-between;font-family:'Press Start 2P',monospace;font-size:10px;color:#39e0a4;text-shadow:0 0 8px rgba(57,224,164,.7)">
+        <span>SHELL-O-TRON</span><span style="color:#ffd23e;text-shadow:0 0 8px rgba(255,210,62,.7)">SCORE 01200</span>
+      </div>
+      <div style="flex:1;display:flex;align-items:flex-end;justify-content:center;gap:46px;padding:52px 0 10px">
+        <div style="width:90px;height:96px;background:#e04a7a;clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);box-shadow:0 0 18px rgba(224,74,122,.5)"></div>
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <div style="width:90px;height:96px;background:#e04a7a;clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);transform:translateY(-36px);box-shadow:0 0 18px rgba(224,74,122,.5)"></div>
+          <div style="width:38px;height:38px;background:#ffd23e;box-shadow:0 0 14px rgba(255,210,62,.8);margin-top:-32px;image-rendering:pixelated;clip-path:polygon(25% 0,75% 0,100% 25%,100% 75%,75% 100%,25% 100%,0 75%,0 25%)"></div>
+        </div>
+        <div style="width:90px;height:96px;background:#e04a7a;clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);box-shadow:0 0 18px rgba(224,74,122,.5)"></div>
+      </div>
+      <div style="text-align:center;font-family:'Press Start 2P',monospace;font-size:11px;color:#39e0a4;text-shadow:0 0 8px rgba(57,224,164,.7);padding:8px 0 16px;letter-spacing:1px">*** YOU WIN ***</div>
+      <div style="display:flex;justify-content:center;gap:16px">
+        <div style="font-family:'Press Start 2P',monospace;font-size:9px;color:#0a0a14;background:#39e0a4;padding:12px 18px;box-shadow:0 0 14px rgba(57,224,164,.6)">PLAY AGAIN</div>
+        <div style="font-family:'Press Start 2P',monospace;font-size:9px;color:#ffd23e;border:2px solid #ffd23e;padding:10px 18px">HI-SCORES</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="1d">
+  <div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Playful cartoon — big, bouncy, kid-friendly</div>
+  <div class="dv-card" style="width:520px;background:#7ec8f2">
+    <div style="display:flex;flex-direction:column;min-height:400px;background:linear-gradient(#8fd2f7 60%,#f7d98b 60%);padding:20px 26px 26px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;color:#fff;text-shadow:0 3px 0 #3a8fc4;letter-spacing:.5px">Penny Hunt!</div>
+        <div style="display:flex;gap:8px">
+          <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:#a3641c;background:#ffe9b8;border:3px solid #fff;border-radius:100px;padding:6px 14px;box-shadow:0 3px 0 rgba(58,143,196,.5)">⭑ 12</div>
+          <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:#3a8fc4;background:#fff;border-radius:100px;padding:6px 14px;box-shadow:0 3px 0 rgba(58,143,196,.5)">Lvl 2</div>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;align-items:flex-end;justify-content:center;gap:38px;padding:40px 0 6px">
+        <div style="width:100px;height:104px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:10px"></div>
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <div style="width:100px;height:104px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);transform:translateY(-42px) rotate(8deg);border-radius:10px"></div>
+          <div style="width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffd98a,#e09b3d);border:4px solid #fff;box-shadow:0 4px 0 rgba(160,100,20,.35);margin-top:-38px;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;color:#8a5a14">1¢</div>
+        </div>
+        <div style="width:100px;height:104px;background:linear-gradient(#ff8a5c,#f4602e);clip-path:polygon(14% 0,86% 0,100% 100%,0 100%);border-radius:10px"></div>
+      </div>
+      <div style="text-align:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:#fff;text-shadow:0 2px 0 #d68a2e;padding:6px 0 14px">You found it! +5 stars</div>
+      <div style="display:flex;justify-content:center">
+        <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;color:#fff;background:linear-gradient(#5ecf70,#38a84e);padding:13px 40px;border-radius:100px;box-shadow:0 5px 0 #237a35;white-space:nowrap">Shuffle! 🔀</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dv-opt" id="1e">
+  <div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Street hustle noir — cardboard box, chalk, high stakes</div>
+  <div class="dv-card" style="width:520px;background:#17161a">
+    <div style="display:flex;flex-direction:column;min-height:400px;padding:22px 26px;background:radial-gradient(ellipse at 50% 20%,rgba(255,244,214,.08),transparent 60%),#17161a">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed rgba(255,255,255,.2);padding-bottom:12px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:#f0ead6;letter-spacing:2px">THREE CUPS. ONE CENT.</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8f8a7c">pot: $8</div>
+      </div>
+      <div style="flex:1;display:flex;align-items:flex-end;justify-content:center;gap:48px;padding:48px 0 10px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:92px;height:102px;background:linear-gradient(150deg,#d9d2c0,#a89f88);clip-path:polygon(17% 0,83% 0,100% 100%,0 100%)"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6f6a5e">[1]</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="border:2px dashed #d4a24a;border-radius:6px;padding:5px"><div style="width:92px;height:102px;background:linear-gradient(150deg,#d9d2c0,#a89f88);clip-path:polygon(17% 0,83% 0,100% 100%,0 100%)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#d4a24a">[2] your call</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+          <div style="width:92px;height:102px;background:linear-gradient(150deg,#d9d2c0,#a89f88);clip-path:polygon(17% 0,83% 0,100% 100%,0 100%)"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6f6a5e">[3]</div>
+        </div>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#b8b2a2;text-align:center;padding:10px 0 16px">&gt; watch close, friend. eyes on the cup._</div>
+      <div style="display:flex;gap:10px;justify-content:center">
+        <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:12px;color:#17161a;background:#d4a24a;padding:11px 22px">LOCK IT IN</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8f8a7c;border:1px solid rgba(255,255,255,.25);padding:10px 18px">watch again</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "build <a class="dv-oid" href="#1a">1a</a> as a playable game" · "mix <a class="dv-oid" href="#1b">1b</a>'s layout with <a class="dv-oid" href="#1e">1e</a>'s mood" · "show the shuffle animation for one of these"</p>
+</section>
+</x-dc>
+</body>
+</html>

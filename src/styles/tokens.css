@@ -1,0 +1,55 @@
+/* Design tokens — from mockups/design_handoff_penny_hunt/README.md */
+:root {
+  --sky: #8fd2f7;
+  --sky-light: #aadcf7;
+  --sand: #f7d98b;
+
+  --blue: #3a8fc4;        /* shadows, links, accents */
+  --blue-text: #3a6a8c;   /* body text */
+  --blue-hover: #2c6f9e;
+
+  --cup-a: #ff8a5c;       /* orange theme (default) */
+  --cup-b: #f4602e;
+  --cup-wrong-a: #c9d4dc;
+  --cup-wrong-b: #9fb0bc;
+
+  --penny-a: #ffd98a;
+  --penny-b: #e09b3d;
+  --penny-text: #8a5a14;
+  --penny-shadow: rgba(160, 100, 20, 0.35);
+
+  --gold: #ffd23e;
+  --gold-alt: #ffb01e;
+  --amber-shadow: #d68a2e;
+  --amber-text: #a3641c;
+  --cream: #ffe9b8;
+  --orange-title: #f4a422;
+
+  --green-a: #5ecf70;
+  --green-b: #38a84e;
+  --green-shadow: #237a35;
+
+  --fox-border: #ffb35c;
+  --muted: #8fa8ba;
+  --light-bg: #eef6fb;
+  --danger: #c0402a;
+
+  /* hard cartoon shadows, no blur */
+  --shadow-control: 0 3px 0 rgba(58, 143, 196, 0.5);
+  --shadow-bubble: 0 3px 0 rgba(58, 143, 196, 0.35);
+  --shadow-card: 0 4px 0 rgba(58, 143, 196, 0.4);
+  --shadow-overlay: 0 8px 0 rgba(58, 143, 196, 0.4);
+
+  --radius-pill: 100px;
+  --radius-card: 18px;
+  --radius-overlay: 26px;
+  --radius-cup: 8px;
+  --radius-bubble: 14px 14px 14px 3px;
+
+  --font: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ease-shuffle: cubic-bezier(0.45, 0, 0.25, 1);
+}
+
+/* Alternate cup themes: set data-cup-theme on <html> or any ancestor */
+[data-cup-theme='teal'] { --cup-a: #5ad0c8; --cup-b: #1f9e94; }
+[data-cup-theme='purple'] { --cup-a: #b58cf0; --cup-b: #7e4fd0; }

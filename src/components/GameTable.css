@@ -1,0 +1,112 @@
+.game {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 18px 22px 24px;
+  position: relative;
+}
+.game__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.game__header-left, .game__header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.game__header-right { gap: 8px; }
+.game__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 0 2px 0 var(--blue);
+  white-space: nowrap;
+}
+
+/* ---- Arena ---- */
+.arena {
+  position: relative;
+  height: min(300px, 42vh);
+  margin-top: 10px;
+  --move: 0.4s;
+}
+.arena__penny {
+  position: absolute;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 1;
+  transition: left var(--move) var(--ease-shuffle), opacity 0.25s;
+}
+.cup {
+  position: absolute;
+  bottom: 22px;
+  aspect-ratio: 0.94;
+  background: linear-gradient(var(--cup-a), var(--cup-b));
+  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+  border-radius: var(--radius-cup);
+  transform: translateX(-50%) translateY(0);
+  transition: left var(--move) var(--ease-shuffle), transform 0.3s ease, background 0.3s;
+  cursor: default;
+  z-index: 2;
+}
+.cup:not(:disabled) { cursor: pointer; }
+.cup:not(:disabled):hover { filter: brightness(1.06); }
+.cup[data-lifted] { transform: translateX(-50%) translateY(-78px); }
+.cup[data-wrong] { background: linear-gradient(var(--cup-wrong-a), var(--cup-wrong-b)); }
+/* clip-path eats the focus ring; draw one inside instead */
+.cup:focus-visible { outline: none; box-shadow: inset 0 0 0 4px #fff; }
+
+.game__status {
+  margin: 0;
+  text-align: center;
+  font-weight: 900;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 0 2px 0 var(--amber-shadow);
+  padding: 4px 0 12px;
+  min-height: 26px;
+}
+.game__fox { min-height: 70px; }
+
+/* ---- Result cards ---- */
+.confetti {
+  position: absolute;
+  top: 0;
+  animation: ph-fall 1.6s ease-out infinite;
+  pointer-events: none;
+}
+.card__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 1.2;
+}
+.card__title--win { color: var(--orange-title); text-shadow: 0 2px 0 rgba(214, 138, 46, 0.3); }
+.card__title--miss { color: var(--blue); }
+.card__stars {
+  display: flex;
+  gap: 8px;
+  font-size: 32px;
+  color: var(--gold);
+  text-shadow: 0 3px 0 var(--amber-shadow);
+  letter-spacing: 8px;
+  line-height: 1.2;
+}
+.card__meta {
+  font-weight: 900;
+  font-size: 14px;
+  color: var(--amber-text);
+}
+.card__line {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--blue-text);
+  text-align: center;
+}
