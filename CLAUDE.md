@@ -4,6 +4,7 @@
 Browser shell game ("Penny Hunt!") built from a Claude Design handoff. The handoff bundle in `mockups/design_handoff_penny_hunt/` is the source of truth for look, copy, timings and game rules: `README.md` there is the spec, `Penny Hunt Prototype.dc.html` is the reference implementation. `PLAN.md` documents the build plan and a few places the spec and prototype disagree.
 
 ## Commands
+Package manager is **bun** (`bun install`, `bun run <script>`, `bunx <tool>`); `bun.lock` is the lockfile — don't create a `package-lock.json`.
 `just dev` · `just test` (vitest) · `just e2e` (playwright, needs dev server or starts one) · `just lint` · `just build` · `just check` (everything).
 
 ## Architecture
@@ -20,7 +21,7 @@ Browser shell game ("Penny Hunt!") built from a Claude Design handoff. The hando
 - Never `waitForLoadState('networkidle')` with Vite.
 
 ## Gotchas
-- Playwright 1.62 on Node 26: `npx playwright install` hangs. `npx playwright install --dry-run chromium` prints the real URL (CfT builds live at `https://cdn.playwright.dev/builds/cft/<ver>/mac-arm64/chrome-headless-shell-mac-arm64.zip` — no `/dbazure/download/playwright` prefix). Unzip into `~/Library/Caches/ms-playwright/chromium_headless_shell-<rev>/` and `touch INSTALLATION_COMPLETE DEPENDENCIES_VALIDATED`.
+- Playwright 1.62 on Node 26: `npx playwright install` hangs (bunx may not). `bunx playwright install --dry-run chromium` prints the real URL (CfT builds live at `https://cdn.playwright.dev/builds/cft/<ver>/mac-arm64/chrome-headless-shell-mac-arm64.zip` — no `/dbazure/download/playwright` prefix). Unzip into `~/Library/Caches/ms-playwright/chromium_headless_shell-<rev>/` and `touch INSTALLATION_COMPLETE DEPENDENCIES_VALIDATED`.
 - `fox-sitting.svg` blinks via SMIL `<animate>`; keep loading it through `<img>`, don't inline it as JSX.
 - React StrictMode double-invokes effects in dev, so phase-entry sounds can play twice in `just dev`. Production is unaffected.
 - The headless screenshot browser renders emoji monochrome; that's the browser, not the CSS.

@@ -6,19 +6,19 @@ Built from the Claude Design handoff in [`mockups/design_handoff_penny_hunt/`](m
 
 ## Stack
 
-Vite · React 19 · TypeScript · plain CSS (design tokens in `src/styles/tokens.css`) · Vitest · Playwright. No backend — it's a static site.
+Bun · Vite · React 19 · TypeScript · plain CSS (design tokens in `src/styles/tokens.css`) · Vitest · Playwright. No backend — it's a static site.
 
 ## Setup (fresh Mac)
 
 ```bash
-brew install node just prek          # Node 20+ (tested on 26)
+brew install oven-sh/bun/bun just prek
 git clone <this repo> && cd shell-game
-just setup                           # npm install + Playwright Chromium
+just setup                           # bun install + Playwright Chromium
 prek install -f                      # git hooks (secret scanning etc.)
 just dev                             # http://localhost:5173
 ```
 
-> If `npx playwright install` hangs on Node 26, run `npx playwright install --dry-run chromium` to get the download URL and unzip it manually into `~/Library/Caches/ms-playwright/` (see CLAUDE.md).
+> If `bunx playwright install` hangs, run `bunx playwright install --dry-run chromium` to get the download URL and unzip it manually into `~/Library/Caches/ms-playwright/` (see CLAUDE.md).
 
 ## Commands
 
@@ -57,4 +57,4 @@ gh repo edit reidg44/shell-game --visibility public --accept-visibility-change-c
 gh api -X POST repos/reidg44/shell-game/pages -f build_type=workflow
 ```
 
-`just build-pages` reproduces the CI build locally; `npx vite preview` then serves it at `http://localhost:4173/shell-game/`.
+`just build-pages` reproduces the CI build locally; `bunx vite preview` then serves it at `http://localhost:4173/shell-game/`.
