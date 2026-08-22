@@ -24,3 +24,6 @@ Browser shell game ("Penny Hunt!") built from a Claude Design handoff. The hando
 - `fox-sitting.svg` blinks via SMIL `<animate>`; keep loading it through `<img>`, don't inline it as JSX.
 - React StrictMode double-invokes effects in dev, so phase-entry sounds can play twice in `just dev`. Production is unaffected.
 - The headless screenshot browser renders emoji monochrome; that's the browser, not the CSS.
+
+## Deploy
+GitHub Pages via `.github/workflows/deploy.yml`. Vite `base` comes from `BASE_PATH` (CI sets `/shell-game/`; dev is `/`). Any new static asset in `public/` must be referenced with `import.meta.env.BASE_URL` in JSX, never a bare `/path` — Vite rewrites `index.html` but not JSX string literals.

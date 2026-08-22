@@ -33,5 +33,9 @@ test:
 e2e:
     npx playwright test
 
+# Build with the GitHub Pages base path (what the deploy workflow does)
+build-pages:
+    BASE_PATH=/shell-game/ npm run build
+
 # Everything CI would run
 check: lint test e2e

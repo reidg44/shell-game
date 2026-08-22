@@ -45,3 +45,16 @@ src/
 e2e/           playwright specs
 public/        fox.svg, fox-sitting.svg
 ```
+
+## Deploy (GitHub Pages)
+
+`.github/workflows/deploy.yml` lints, tests, builds with `BASE_PATH=/shell-game/`, and publishes `dist/` on every push to `main`. Site: https://reidg44.github.io/shell-game/
+
+One-time setup: the repo must be **public** (or on a paid plan) for Pages, then enable Actions as the source:
+
+```bash
+gh repo edit reidg44/shell-game --visibility public --accept-visibility-change-consequences
+gh api -X POST repos/reidg44/shell-game/pages -f build_type=workflow
+```
+
+`just build-pages` reproduces the CI build locally; `npx vite preview` then serves it at `http://localhost:4173/shell-game/`.

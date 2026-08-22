@@ -67,7 +67,7 @@ export type FoxMood = 'idle' | 'shuffle' | 'startled' | 'gloat'
 export function FoxAvatar({ mood = 'idle', size = 62 }: { mood?: FoxMood; size?: 62 | 60 }) {
   return (
     <div className={size === 60 ? 'fox-avatar fox-avatar--60' : 'fox-avatar'} data-mood={mood}>
-      <img src="/fox.svg" alt="" className="motion-idle" />
+      <img src={`${import.meta.env.BASE_URL}fox.svg`} alt="" className="motion-idle" />
     </div>
   )
 }

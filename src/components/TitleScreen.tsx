@@ -27,7 +27,7 @@ export function TitleScreen({ stars, best, sound, onToggleSound, onSettings, onP
       </h1>
       <Penny size={60} fontSize={20} className="title__penny motion-idle" />
       <div className="title__fox">
-        <img src="/fox-sitting.svg" alt="A cartoon fox, the game host" className="title__fox-img motion-idle" />
+        <img src={`${import.meta.env.BASE_URL}fox-sitting.svg`} alt="A cartoon fox, the game host" className="title__fox-img motion-idle" />
         <Bubble large style={{ maxWidth: 140, marginTop: 14 }}>
           {LINE_TITLE}
         </Bubble>
