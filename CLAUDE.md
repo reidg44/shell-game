@@ -5,7 +5,7 @@ Browser shell game ("Penny Hunt!") built from a Claude Design handoff. The hando
 
 ## Commands
 Package manager is **bun** (`bun install`, `bun run <script>`, `bunx <tool>`); `bun.lock` is the lockfile — don't create a `package-lock.json`.
-`just dev` · `just test` (vitest) · `just e2e` (playwright, needs dev server or starts one) · `just lint` · `just build` · `just check` (everything).
+`just dev` · `just test` (vitest) · `just e2e` (playwright, needs dev server or starts one; `PLAYWRIGHT_BASE_URL=https://pennyhunt.apps.geyers.net just e2e` runs it against the live site) · `just lint` · `just build` · `just check` (lint, tsc, vitest, then `terraform fmt -check` and `validate`; e2e is left out because Chromium is slow to install in CI). The Platform recipes are in `justfile` (template-owned); Penny Hunt's own are in `app.just`.
 
 ## Architecture
 - `src/game/engine.ts` — pure functions, injectable `rng`. All scoring/unlock rules live here.
@@ -27,4 +27,8 @@ Package manager is **bun** (`bun install`, `bun run <script>`, `bunx <tool>`); `
 - The headless screenshot browser renders emoji monochrome; that's the browser, not the CSS.
 
 ## Deploy
-GitHub Pages via `.github/workflows/deploy.yml`. Vite `base` comes from `BASE_PATH` (CI sets `/shell-game/`; dev is `/`). Any new static asset in `public/` must be referenced with `import.meta.env.BASE_URL` in JSX, never a bare `/path` — Vite rewrites `index.html` but not JSX string literals.
+Two deploys run side by side from `main` until the Pages cutover (shell-game #2):
+- **The Platform** (`https://pennyhunt.apps.geyers.net`): `.github/workflows/deploy.yml` runs `just check`, then `just build`, `just deploy`, `just smoke` through the household deploy role. It serves from `/`, so `BASE_PATH` stays unset. Rules, recipes and `copier update` steps: [`docs/platform.md`](docs/platform.md). `main.tf`, `justfile`, `deploy.yml`, `.copier-answers.yml` and the Platform parts of `.gitignore` and `.pre-commit-config.yaml` are owned by the all-apps template; don't edit them by hand.
+- **GitHub Pages** (`https://reidg44.github.io/shell-game/`): `.github/workflows/pages.yml` builds with `BASE_PATH=/shell-game/`.
+
+Vite `base` comes from `BASE_PATH` (Pages sets `/shell-game/`; the Platform and dev are `/`). Any new static asset in `public/` must be referenced with `import.meta.env.BASE_URL` in JSX, never a bare `/path` — Vite rewrites `index.html` but not JSX string literals.
