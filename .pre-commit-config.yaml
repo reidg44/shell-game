@@ -1,8 +1,14 @@
-# prek config file — https://prek.j178.dev/
-# Install: prek install -f     Run all: prek run --all-files
+# Platform hooks, owned by the all-apps template (run with prek, never pre-commit).
+# https://github.com/j178/prek
+#
+# Install: prek install
+# Run on everything: prek run --all-files
+#
+# The App's own hooks go below the Platform ones; `copier update` keeps them.
+
 repos:
 - repo: https://github.com/betterleaks/betterleaks
-  rev: v1.1.1
+  rev: v1.9.0
   hooks:
   - id: betterleaks
 
@@ -12,9 +18,24 @@ repos:
   - id: check-added-large-files
     args: [ "--maxkb=500" ]
   - id: check-yaml
-  - id: check-json
-    exclude: ^tsconfig.*\.json$   # TS configs are JSONC (comments, trailing commas)
   - id: end-of-file-fixer
   - id: mixed-line-ending
   - id: trailing-whitespace
-    exclude: ^mockups/
+
+- repo: local
+  hooks:
+  - id: terraform-fmt
+    name: terraform fmt
+    entry: terraform fmt -check -diff
+    language: system
+    files: \.tf$
+
+# App hooks
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v6.0.0
+  hooks:
+  - id: check-json
+    exclude: ^tsconfig.*\.json$   # TS configs are JSONC (comments, trailing commas)
+
+# The design handoff is kept as delivered.
+exclude: ^mockups/

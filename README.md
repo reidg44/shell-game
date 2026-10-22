@@ -30,7 +30,8 @@ just dev                             # http://localhost:5173
 | `just test` | Unit tests (game engine + reducer) |
 | `just e2e` | Playwright browser tests (desktop + mobile) |
 | `just lint` | oxlint + `tsc` |
-| `just check` | All of the above, what CI would run |
+| `just check` | lint, `tsc`, unit tests, then `terraform fmt -check` and `validate` (what CI's `check` job runs; e2e is separate) |
+| `just deploy` / `just smoke` | The Platform deploy and its URL check (CI runs these; from a Mac, with `AWS_PROFILE=household`) |
 
 ## Project layout
 
@@ -46,9 +47,13 @@ e2e/           playwright specs
 public/        fox.svg, fox-sitting.svg
 ```
 
-## Deploy (GitHub Pages)
+## Deploy
 
-`.github/workflows/deploy.yml` lints, tests, builds with `BASE_PATH=/shell-game/`, and publishes `dist/` on every push to `main`. Site: https://reidg44.github.io/shell-game/
+The game is live at **https://pennyhunt.apps.geyers.net** on the household Platform ([all-apps](https://github.com/reidg44/all-apps)): `.github/workflows/deploy.yml` runs `just check`, then `just build`, `just deploy` and `just smoke` on every push to `main`. The Platform's rules for this repo are in [`docs/platform.md`](docs/platform.md).
+
+### GitHub Pages (side by side, for now)
+
+`.github/workflows/pages.yml` lints, tests, builds with `BASE_PATH=/shell-game/`, and publishes `dist/` on every push to `main`. Site: https://reidg44.github.io/shell-game/
 
 One-time setup: the repo must be **public** (or on a paid plan) for Pages, then enable Actions as the source:
 

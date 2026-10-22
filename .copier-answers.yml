@@ -1,0 +1,18 @@
+# Changes here will be overwritten by Copier; never edit this file by hand.
+_commit: v0.1.0
+_src_path: gh:reidg44/all-apps
+backend_language: none
+build_cmd: bun run build
+check_cmd: bun run lint && bunx tsc -b && bunx vitest run
+dev_cmd: bun run dev
+dist_dir: dist
+groups:
+- adults
+- kids
+job_hosts: []
+repo: shell-game
+runtime: bun
+slug: pennyhunt
+spa_fallback: false
+store: none
+ui: static

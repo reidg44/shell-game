@@ -1,9 +1,26 @@
+# Platform excludes, owned by the all-apps template. The App's own lines go
+# below; `copier update` keeps them.
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+# Secrets, keys and certs
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# App
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,dotenv,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,macos,dotenv,python
-
-### dotenv ###
-.env
 
 ### macOS ###
 # General
@@ -233,12 +250,7 @@ pyrightconfig.json
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
 # Secrets & credentials — Reid's standard; the generator above does NOT cover these
-*.pem
-*.key
-*.crt
 *.cer
-*.p12
-*.pfx
 *.keystore
 credentials.json
 service-account*.json
