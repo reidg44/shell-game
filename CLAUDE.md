@@ -27,8 +27,6 @@ Package manager is **bun** (`bun install`, `bun run <script>`, `bunx <tool>`); `
 - The headless screenshot browser renders emoji monochrome; that's the browser, not the CSS.
 
 ## Deploy
-Two deploys run side by side from `main` until the Pages cutover (shell-game #2):
-- **The Platform** (`https://pennyhunt.apps.geyers.net`): `.github/workflows/deploy.yml` runs `just check`, then `just build`, `just deploy`, `just smoke` through the household deploy role. It serves from `/`, so `BASE_PATH` stays unset. Rules, recipes and `copier update` steps: [`docs/platform.md`](docs/platform.md). `main.tf`, `justfile`, `deploy.yml`, `.copier-answers.yml` and the Platform parts of `.gitignore` and `.pre-commit-config.yaml` are owned by the all-apps template; don't edit them by hand.
-- **GitHub Pages** (`https://reidg44.github.io/shell-game/`): `.github/workflows/pages.yml` builds with `BASE_PATH=/shell-game/`.
+**The Platform** (`https://pennyhunt.apps.geyers.net`) is the only deploy (GitHub Pages was turned off at the cutover, shell-game #2). `.github/workflows/deploy.yml` runs `just check`, then `just build`, `just deploy`, `just smoke` through the household deploy role. Rules, recipes and `copier update` steps: [`docs/platform.md`](docs/platform.md). `main.tf`, `justfile`, `deploy.yml`, `.copier-answers.yml` and the Platform parts of `.gitignore` and `.pre-commit-config.yaml` are owned by the all-apps template; don't edit them by hand.
 
-Vite `base` comes from `BASE_PATH` (Pages sets `/shell-game/`; the Platform and dev are `/`). Any new static asset in `public/` must be referenced with `import.meta.env.BASE_URL` in JSX, never a bare `/path` — Vite rewrites `index.html` but not JSX string literals.
+Vite `base` is the default `/`. Any new static asset in `public/` must be referenced with `import.meta.env.BASE_URL` in JSX, never a bare `/path` — Vite rewrites `index.html` but not JSX string literals.
