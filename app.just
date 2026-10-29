@@ -9,10 +9,6 @@ setup:
     bun install
     bunx playwright install chromium
 
-# Build with the GitHub Pages base path (what pages.yml does)
-build-pages:
-    BASE_PATH=/shell-game/ bun run build
-
 # Serve the production build
 preview:
     bun run preview

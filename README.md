@@ -50,16 +50,3 @@ public/        fox.svg, fox-sitting.svg
 ## Deploy
 
 The game is live at **https://pennyhunt.apps.geyers.net** on the household Platform ([all-apps](https://github.com/reidg44/all-apps)): `.github/workflows/deploy.yml` runs `just check`, then `just build`, `just deploy` and `just smoke` on every push to `main`. The Platform's rules for this repo are in [`docs/platform.md`](docs/platform.md).
-
-### GitHub Pages (side by side, for now)
-
-`.github/workflows/pages.yml` lints, tests, builds with `BASE_PATH=/shell-game/`, and publishes `dist/` on every push to `main`. Site: https://reidg44.github.io/shell-game/
-
-One-time setup: the repo must be **public** (or on a paid plan) for Pages, then enable Actions as the source:
-
-```bash
-gh repo edit reidg44/shell-game --visibility public --accept-visibility-change-consequences
-gh api -X POST repos/reidg44/shell-game/pages -f build_type=workflow
-```
-
-`just build-pages` reproduces the CI build locally; `bunx vite preview` then serves it at `http://localhost:4173/shell-game/`.
