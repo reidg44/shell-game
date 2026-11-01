@@ -25,7 +25,7 @@ export const LINE_SHUFFLE = 'Follow that cup!'
 export const LINE_GUESS = "So… where'd it go?"
 export const LINE_MISS = 'Ooh, tough break!'
 export const LINE_TITLE = 'Think you can keep up with these paws?'
-export const LINE_LEVELS = 'Level 4 is where I start playing dirty…'
+export const LINE_LEVELS = 'I play dirty on the odd levels…'
 
 export const STATUS: Record<string, string> = {
   peek: 'Watch the penny…',

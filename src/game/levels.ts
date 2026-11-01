@@ -7,19 +7,22 @@ export interface LevelConfig {
 }
 
 export const LEVELS: readonly LevelConfig[] = [
-  { cups: 3, moves: 5, ms: 560 },
+  // Levels alternate (counting from 1): odd levels add tricks and keep the
+  // previous level's speed (no win-streak ramp either); even levels are the
+  // faster ones. The handoff had tricks on L4/L6 only.
+  { cups: 3, moves: 5, ms: 560, tricks: true },
   { cups: 3, moves: 7, ms: 430 },
-  { cups: 4, moves: 8, ms: 400 },
-  { cups: 4, moves: 10, ms: 330, tricks: true },
-  { cups: 5, moves: 11, ms: 300 },
-  { cups: 5, moves: 13, ms: 260, tricks: true },
+  { cups: 4, moves: 8, ms: 430, tricks: true },
+  { cups: 4, moves: 10, ms: 330 },
+  { cups: 5, moves: 11, ms: 330, tricks: true },
+  { cups: 5, moves: 13, ms: 260 },
   // Beyond the original handoff (which stops at 6): same curve, up to 7 cups.
-  { cups: 5, moves: 15, ms: 240, tricks: true },
-  { cups: 6, moves: 12, ms: 280 },
+  { cups: 5, moves: 15, ms: 260, tricks: true },
+  { cups: 6, moves: 12, ms: 240 },
   { cups: 6, moves: 15, ms: 240, tricks: true },
-  { cups: 6, moves: 18, ms: 210, tricks: true },
-  { cups: 7, moves: 16, ms: 220 },
-  { cups: 7, moves: 20, ms: 180, tricks: true },
+  { cups: 6, moves: 18, ms: 210 },
+  { cups: 7, moves: 16, ms: 210, tricks: true },
+  { cups: 7, moves: 20, ms: 180 },
 ]
 
 export const LEVEL_COUNT = LEVELS.length
@@ -49,11 +52,13 @@ export const MIN_MOVE_MS = 100
 
 /**
  * ms per shuffle move. `levelWins` (consecutive wins on this level, reset by
- * a miss or a level change) speeds the shuffle up as the run goes on.
+ * a miss or a level change) speeds the shuffle up as the run goes on — except
+ * on trick levels, which hold a steady speed.
  */
 export function moveMs(level: number, speed: Speed, levelWins = 0): number {
-  const ramp = WIN_SPEEDUP ** Math.min(levelWins, WIN_SPEEDUP_MAX_WINS)
-  return Math.max(MIN_MOVE_MS, LEVELS[level].ms * SPEED_MULT[speed] * ramp)
+  const cfg = LEVELS[level]
+  const ramp = cfg.tricks ? 1 : WIN_SPEEDUP ** Math.min(levelWins, WIN_SPEEDUP_MAX_WINS)
+  return Math.max(MIN_MOVE_MS, cfg.ms * SPEED_MULT[speed] * ramp)
 }
 
 export function levelSubLabel(level: number): string {

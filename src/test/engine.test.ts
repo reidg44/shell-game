@@ -54,25 +54,46 @@ describe('moveMs', () => {
   it('first round on a level is the base speed', () => {
     expect(moveMs(0, 1, 0)).toBe(LEVELS[0].ms)
   })
+  it('trick levels run at the same base speed as the level before them', () => {
+    LEVELS.forEach((cfg, i) => {
+      if (cfg.tricks && i > 0) expect(cfg.ms).toBe(LEVELS[i - 1].ms)
+    })
+  })
+  it('even levels (as players count them: 2, 4, 6…) are faster than the level before', () => {
+    LEVELS.forEach((cfg, i) => {
+      if ((i + 1) % 2 === 0) expect(cfg.ms).toBeLessThan(LEVELS[i - 1].ms)
+    })
+  })
+  it('trick levels do not speed up on a win streak', () => {
+    const trick = LEVELS.findIndex((c) => c.tricks)
+    expect(moveMs(trick, 1, 3)).toBe(moveMs(trick, 1, 0))
+  })
   it('each consecutive win on the level makes the shuffle faster', () => {
-    const times = [0, 1, 2, 3].map((w) => moveMs(0, 1, w))
+    const times = [0, 1, 2, 3].map((w) => moveMs(1, 1, w))
     for (let i = 1; i < times.length; i++) expect(times[i]).toBeLessThan(times[i - 1])
-    expect(moveMs(0, 1, 1)).toBeCloseTo(LEVELS[0].ms * WIN_SPEEDUP)
+    expect(moveMs(1, 1, 1)).toBeCloseTo(LEVELS[1].ms * WIN_SPEEDUP)
   })
   it('stops speeding up after a few wins', () => {
-    expect(moveMs(0, 1, WIN_SPEEDUP_MAX_WINS + 10)).toBe(moveMs(0, 1, WIN_SPEEDUP_MAX_WINS))
+    expect(moveMs(1, 1, WIN_SPEEDUP_MAX_WINS + 10)).toBe(moveMs(1, 1, WIN_SPEEDUP_MAX_WINS))
   })
-  it('never goes below the floor, even on the hardest level at Chaos', () => {
-    expect(moveMs(LEVEL_COUNT - 1, 2, 99)).toBe(MIN_MOVE_MS)
+  it('never goes below the floor, at any level, speed or win streak', () => {
+    LEVELS.forEach((_, i) => {
+      ;([0, 1, 2] as Speed[]).forEach((sp) => {
+        expect(moveMs(i, sp, 99)).toBeGreaterThanOrEqual(MIN_MOVE_MS)
+      })
+    })
   })
 })
 
 describe('distraction tricks', () => {
   it('only fires on trick levels', () => {
-    expect(rollDistraction(0, () => 0)).toBe(false)
-    expect(rollDistraction(3, () => 0)).toBe(true)
-    expect(rollDistraction(3, () => 0.5)).toBe(false)
-    expect(rollDistraction(5, () => 0.21)).toBe(true)
+    expect(rollDistraction(1, () => 0)).toBe(false)
+    expect(rollDistraction(2, () => 0)).toBe(true)
+    expect(rollDistraction(2, () => 0.5)).toBe(false)
+    expect(rollDistraction(4, () => 0.21)).toBe(true)
+  })
+  it('odd levels (as players count them: 1, 3, 5…) are the trick levels', () => {
+    LEVELS.forEach((cfg, i) => expect(Boolean(cfg.tricks)).toBe((i + 1) % 2 === 1))
   })
   it('a distraction counts as half a move', () => {
     expect(moveCost(true)).toBe(0.5)

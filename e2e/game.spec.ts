@@ -31,6 +31,8 @@ test('title → levels → win a round → progress is saved', async ({ page }) 
   await page.getByTestId('play-btn').click()
   await expect(page.getByTestId('screen-levels')).toBeVisible()
   await expect(page.getByTestId('level-2')).toHaveAttribute('data-locked', 'true')
+  await expect(page.getByTestId('level-1')).toContainText('3 cups + tricks')
+  await expect(page.getByTestId('level-2')).not.toContainText('tricks')
 
   await page.getByTestId('level-1').click()
   await expect(page.getByTestId('screen-game')).toHaveAttribute('data-phase', 'peek')
@@ -143,7 +145,7 @@ test('trick level fires distraction lines and still reaches guess', async ({ pag
   )
   await page.reload()
   await page.getByTestId('play-btn').click()
-  await page.getByTestId('level-4').click()
+  await page.getByTestId('level-3').click()
   await expect(page.getByTestId('screen-game')).toHaveAttribute('data-phase', 'shuffle', { timeout: 10_000 })
   await expect(page.getByTestId('host-line')).toHaveText('Whoa, is that a seagull with your sandwich?! 👀')
   await expect(page.getByTestId('cup-3')).toBeVisible()
@@ -160,7 +162,7 @@ test('old 6-level save opens level 7; the 7-cup finale plays without cups overla
   await page.getByTestId('play-btn').click()
   await expect(page.getByTestId('level-7')).toHaveAttribute('data-locked', 'false')
   await expect(page.getByTestId('level-8')).toHaveAttribute('data-locked', 'true')
-  await expect(page.getByTestId(`level-${LEVEL_COUNT}`)).toContainText('7 cups + tricks')
+  await expect(page.getByTestId(`level-${LEVEL_COUNT}`)).toContainText('7 cups')
 
   // jump to the last level
   await page.evaluate(
@@ -185,8 +187,12 @@ test('old 6-level save opens level 7; the 7-cup finale plays without cups overla
 
 test('cups shuffle faster with each consecutive win, and reset after a miss', async ({ page }) => {
   const moveVar = () => page.getByTestId('arena').evaluate((el) => parseFloat((el as HTMLElement).style.getPropertyValue('--move')))
+  await page.evaluate(() =>
+    localStorage.setItem('pennyhunt-save', JSON.stringify({ stars: 0, best: 0, unlocked: 2, levelStars: [], sound: false, speed: 2 })),
+  )
+  await page.reload()
   await page.getByTestId('play-btn').click()
-  await page.getByTestId('level-1').click()
+  await page.getByTestId('level-2').click() // L1 is a trick level, which doesn't ramp
   const first = await moveVar()
 
   await playRound(page, 0)
@@ -201,4 +207,20 @@ test('cups shuffle faster with each consecutive win, and reset after a miss', as
   await playRound(page, 1) // miss
   await page.getByTestId('retry-btn').click()
   expect(await moveVar()).toBe(first)
+})
+
+test('trick levels hold a steady speed through a win streak', async ({ page }) => {
+  const moveVar = () => page.getByTestId('arena').evaluate((el) => parseFloat((el as HTMLElement).style.getPropertyValue('--move')))
+  await page.evaluate(() =>
+    localStorage.setItem('pennyhunt-save', JSON.stringify({ stars: 0, best: 0, unlocked: 3, levelStars: [], sound: false, speed: 2 })),
+  )
+  await page.reload()
+  await page.getByTestId('play-btn').click()
+  await page.getByTestId('level-3').click()
+  const first = await moveVar()
+  for (let i = 0; i < 2; i++) {
+    await playRound(page, 0)
+    await page.getByTestId('next-btn').click()
+    expect(await moveVar()).toBe(first)
+  }
 })
