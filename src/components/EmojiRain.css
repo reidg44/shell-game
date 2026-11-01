@@ -1,0 +1,25 @@
+.emoji-rain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.emoji-rain__drop {
+  position: absolute;
+  top: 0;
+  line-height: 1;
+  transform: translate(-50%, -60px);
+  animation-name: ph-rain;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+}
+@keyframes ph-rain {
+  0% { transform: translate(-50%, -60px) rotate(0deg); }
+  100% { transform: translate(-50%, calc(100vh + 60px)) rotate(var(--spin)); }
+}
+/* Rain is pure decoration: drop it entirely for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .emoji-rain { display: none; }
+}

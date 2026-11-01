@@ -39,5 +39,5 @@ button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 .screen-pop { animation: ph-pop 0.35s ease; }
 
 @media (prefers-reduced-motion: reduce) {
-  .motion-idle, .motion-confetti { animation: none !important; }
+  .motion-idle { animation: none !important; }
 }

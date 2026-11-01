@@ -4,6 +4,7 @@ import type { GameApi } from '../game/useGame'
 import { STATUS } from '../game/lines'
 import { winStarCount } from '../game/engine'
 import { WIN_STARS } from '../game/levels'
+import { EmojiRain } from './EmojiRain'
 import './GameTable.css'
 
 interface Props {
@@ -119,14 +120,8 @@ function WinOverlay({
 }) {
   return (
     <div className="scrim" role="dialog" aria-modal="true" aria-labelledby="win-title" data-testid="win-overlay">
+      {confetti && <EmojiRain />}
       <div className="card">
-        {confetti && (
-          <>
-            <span className="confetti motion-confetti" style={{ left: '18%', fontSize: 18, animationDuration: '1.6s' }} aria-hidden>🎉</span>
-            <span className="confetti motion-confetti" style={{ left: '50%', fontSize: 14, animationDuration: '1.9s', animationDelay: '.4s' }} aria-hidden>✨</span>
-            <span className="confetti motion-confetti" style={{ left: '78%', fontSize: 16, animationDuration: '1.7s', animationDelay: '.8s' }} aria-hidden>🎊</span>
-          </>
-        )}
         <h2 id="win-title" className="card__title card__title--win">You found it!</h2>
         <div className="card__stars" aria-label={`${starCount} of 3 stars`} data-testid="win-stars">
           {'⭑'.repeat(starCount)}
