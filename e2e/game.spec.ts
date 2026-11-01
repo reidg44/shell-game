@@ -1,5 +1,8 @@
 import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
+import { LEVEL_COUNT } from '../src/game/levels'
+
+const stars = (...lead: number[]) => [...lead, ...Array(LEVEL_COUNT - lead.length).fill(0)]
 
 /**
  * Math.random → 0 makes the game deterministic: the penny is always under
@@ -49,7 +52,7 @@ test('title → levels → win a round → progress is saved', async ({ page }) 
 
   // persisted
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('pennyhunt-save')!))
-  expect(saved).toMatchObject({ stars: 10, best: 2, unlocked: 2, levelStars: [2, 0, 0, 0, 0, 0] })
+  expect(saved).toMatchObject({ stars: 10, best: 2, unlocked: 2, levelStars: stars(2) })
 
   await page.reload()
   await expect(page.getByTestId('title-stats')).toHaveText('Best streak: 2 · ⭑ 10')
@@ -131,12 +134,12 @@ test('settings: sound + speed persist, reset wipes progress but keeps settings',
   await page.getByTestId('settings-close').click()
   await expect(page.getByTestId('title-stats')).toHaveText('Best streak: 0 · ⭑ 0')
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('pennyhunt-save')!))
-  expect(saved).toEqual({ stars: 0, best: 0, unlocked: 1, levelStars: [0, 0, 0, 0, 0, 0], sound: false, speed: 2 })
+  expect(saved).toEqual({ stars: 0, best: 0, unlocked: 1, levelStars: stars(), sound: false, speed: 2 })
 })
 
 test('trick level fires distraction lines and still reaches guess', async ({ page }) => {
   await page.evaluate(() =>
-    localStorage.setItem('pennyhunt-save', JSON.stringify({ stars: 0, best: 0, unlocked: 6, levelStars: [0, 0, 0, 0, 0, 0], sound: false, speed: 2 })),
+    localStorage.setItem('pennyhunt-save', JSON.stringify({ stars: 0, best: 0, unlocked: 6, levelStars: [], sound: false, speed: 2 })),
   )
   await page.reload()
   await page.getByTestId('play-btn').click()
@@ -146,4 +149,56 @@ test('trick level fires distraction lines and still reaches guess', async ({ pag
   await expect(page.getByTestId('cup-3')).toBeVisible()
   await playRound(page, 0)
   await expect(page.getByTestId('win-overlay')).toBeVisible()
+})
+
+test('old 6-level save opens level 7; the 7-cup finale plays without cups overlapping', async ({ page }) => {
+  // what a player who beat L6 before the level expansion has in localStorage
+  await page.evaluate(() =>
+    localStorage.setItem('pennyhunt-save', JSON.stringify({ stars: 90, best: 4, unlocked: 6, levelStars: [3, 3, 3, 2, 2, 1], sound: false, speed: 2 })),
+  )
+  await page.reload()
+  await page.getByTestId('play-btn').click()
+  await expect(page.getByTestId('level-7')).toHaveAttribute('data-locked', 'false')
+  await expect(page.getByTestId('level-8')).toHaveAttribute('data-locked', 'true')
+  await expect(page.getByTestId(`level-${LEVEL_COUNT}`)).toContainText('7 cups + tricks')
+
+  // jump to the last level
+  await page.evaluate(
+    (n) => localStorage.setItem('pennyhunt-save', JSON.stringify({ stars: 0, best: 0, unlocked: n, levelStars: [], sound: false, speed: 2 })),
+    LEVEL_COUNT,
+  )
+  await page.reload()
+  await page.getByTestId('play-btn').click()
+  await page.getByTestId(`level-${LEVEL_COUNT}`).click()
+  await expect(page.getByTestId('screen-game')).toHaveAttribute('data-phase', 'guess', { timeout: 20_000 })
+  await expect(page.getByTestId('cup-6')).toBeVisible()
+  await expect(page.locator('.cup')).toHaveCount(7)
+
+  const boxes = await page.locator('.cup').evaluateAll((els) =>
+    els.map((e) => e.getBoundingClientRect()).map((r) => ({ left: r.left, right: r.right })).sort((a, b) => a.left - b.left),
+  )
+  for (let i = 1; i < boxes.length; i++) expect(boxes[i].left).toBeGreaterThanOrEqual(boxes[i - 1].right)
+
+  await page.getByTestId('cup-0').click()
+  await expect(page.getByTestId('win-overlay')).toBeVisible()
+})
+
+test('cups shuffle faster with each consecutive win, and reset after a miss', async ({ page }) => {
+  const moveVar = () => page.getByTestId('arena').evaluate((el) => parseFloat((el as HTMLElement).style.getPropertyValue('--move')))
+  await page.getByTestId('play-btn').click()
+  await page.getByTestId('level-1').click()
+  const first = await moveVar()
+
+  await playRound(page, 0)
+  await page.getByTestId('next-btn').click()
+  const second = await moveVar()
+  expect(second).toBeLessThan(first)
+
+  await playRound(page, 0)
+  await page.getByTestId('next-btn').click()
+  expect(await moveVar()).toBeLessThan(second)
+
+  await playRound(page, 1) // miss
+  await page.getByTestId('retry-btn').click()
+  expect(await moveVar()).toBe(first)
 })

@@ -71,7 +71,9 @@ export function GameTable({ game, stars, sound, onToggleSound, onLevels }: Props
               data-wrong={wrong || undefined}
               aria-label={`Cup ${slot + 1}`}
               disabled={s.phase !== 'guess'}
-              style={{ left: slotLeft(slot), width: `min(104px, ${(66 / n).toFixed(1)}vw)` }}
+              // the % term (of arena width) keeps 6–7 cups from overlapping on wide screens;
+              // for ≤5 cups it never binds, so the spec'd size is unchanged
+              style={{ left: slotLeft(slot), width: `min(104px, ${(66 / n).toFixed(1)}vw, ${(90 / (n + 1)).toFixed(1)}%)` }}
               onClick={() => pick(cup)}
             />
           )

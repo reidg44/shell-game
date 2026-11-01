@@ -9,8 +9,11 @@ import {
   swapRandomPair,
   winStarCount,
 } from '../game/engine'
-import { LEVELS, moveMs, SPEED_MULT } from '../game/levels'
+import { LEVEL_COUNT, LEVELS, MIN_MOVE_MS, moveMs, SPEED_MULT, WIN_SPEEDUP, WIN_SPEEDUP_MAX_WINS } from '../game/levels'
 import type { Speed } from '../game/levels'
+
+/** n zeros padded to the level count, with the given leading values. */
+const stars = (...lead: number[]) => [...lead, ...Array(LEVEL_COUNT - lead.length).fill(0)]
 
 /** Deterministic rng that yields the given sequence, then repeats the last value. */
 const seq = (...vals: number[]) => {
@@ -44,9 +47,23 @@ describe('moveMs', () => {
   it('applies the speed multiplier to every level', () => {
     LEVELS.forEach((cfg, i) => {
       ;([0, 1, 2] as Speed[]).forEach((sp) => {
-        expect(moveMs(i, sp)).toBeCloseTo(cfg.ms * SPEED_MULT[sp])
+        expect(moveMs(i, sp)).toBeCloseTo(Math.max(MIN_MOVE_MS, cfg.ms * SPEED_MULT[sp]))
       })
     })
+  })
+  it('first round on a level is the base speed', () => {
+    expect(moveMs(0, 1, 0)).toBe(LEVELS[0].ms)
+  })
+  it('each consecutive win on the level makes the shuffle faster', () => {
+    const times = [0, 1, 2, 3].map((w) => moveMs(0, 1, w))
+    for (let i = 1; i < times.length; i++) expect(times[i]).toBeLessThan(times[i - 1])
+    expect(moveMs(0, 1, 1)).toBeCloseTo(LEVELS[0].ms * WIN_SPEEDUP)
+  })
+  it('stops speeding up after a few wins', () => {
+    expect(moveMs(0, 1, WIN_SPEEDUP_MAX_WINS + 10)).toBe(moveMs(0, 1, WIN_SPEEDUP_MAX_WINS))
+  })
+  it('never goes below the floor, even on the hardest level at Chaos', () => {
+    expect(moveMs(LEVEL_COUNT - 1, 2, 99)).toBe(MIN_MOVE_MS)
   })
 })
 
@@ -73,15 +90,16 @@ describe('applyWin', () => {
     expect(run).toEqual({ streak: 1, levelWins: 1 })
   })
   it('caps level stars at 3 and never lowers them', () => {
-    let s = { ...DEFAULT_SAVE, levelStars: [3, 0, 0, 0, 0, 0] }
+    let s = { ...DEFAULT_SAVE, levelStars: stars(3) }
     s = applyWin(s, { streak: 0, levelWins: 0 }, 0).save
     expect(s.levelStars[0]).toBe(3)
     s = applyWin(s, { streak: 4, levelWins: 4 }, 1).save
     expect(s.levelStars[1]).toBe(3)
   })
-  it('never unlocks past level 6', () => {
-    const s = applyWin({ ...DEFAULT_SAVE, unlocked: 6 }, { streak: 0, levelWins: 0 }, 5).save
-    expect(s.unlocked).toBe(6)
+  it('never unlocks past the last level', () => {
+    const last = LEVEL_COUNT - 1
+    const s = applyWin({ ...DEFAULT_SAVE, unlocked: LEVEL_COUNT }, { streak: 0, levelWins: 0 }, last).save
+    expect(s.unlocked).toBe(LEVEL_COUNT)
   })
   it('does not regress an existing unlock', () => {
     const s = applyWin({ ...DEFAULT_SAVE, unlocked: 5 }, { streak: 0, levelWins: 0 }, 0).save
@@ -115,15 +133,38 @@ describe('parseSave', () => {
     expect(parseSave('null')).toEqual(DEFAULT_SAVE)
   })
   it('round-trips a valid save', () => {
-    const s = { stars: 40, best: 3, unlocked: 4, levelStars: [3, 2, 1, 0, 0, 0], sound: false, speed: 2 }
+    const s = { stars: 40, best: 3, unlocked: 4, levelStars: stars(3, 2, 1), sound: false, speed: 2 }
     expect(parseSave(JSON.stringify(s))).toEqual(s)
   })
   it('clamps out-of-range values', () => {
     const s = parseSave(JSON.stringify({ unlocked: 99, speed: 7, levelStars: [9, -1], stars: -5 }))
-    expect(s.unlocked).toBe(6)
+    expect(s.unlocked).toBe(LEVEL_COUNT)
     expect(s.speed).toBe(2)
-    expect(s.levelStars).toEqual([3, 0, 0, 0, 0, 0])
+    expect(s.levelStars).toEqual(stars(3))
     expect(s.stars).toBe(0)
     expect(s.sound).toBe(true)
+  })
+  it('opens the level after the last one beaten (old 6-level saves)', () => {
+    // Back when there were 6 levels, beating L6 left unlocked capped at 6.
+    const old = { stars: 200, best: 9, unlocked: 6, levelStars: [3, 3, 3, 3, 3, 1], sound: true, speed: 1 }
+    const s = parseSave(JSON.stringify(old))
+    expect(s.unlocked).toBe(7)
+    expect(s.levelStars).toEqual(stars(3, 3, 3, 3, 3, 1))
+  })
+  it('does not unlock anything on a save with no stars', () => {
+    expect(parseSave(JSON.stringify({ unlocked: 1, levelStars: [] })).unlocked).toBe(1)
+  })
+})
+
+describe('LEVELS', () => {
+  it('never gets easier: cups and moves never drop, and fit on the table', () => {
+    LEVELS.forEach((cfg, i) => {
+      expect(cfg.cups).toBeGreaterThanOrEqual(3)
+      expect(cfg.cups).toBeLessThanOrEqual(7)
+      if (i === 0) return
+      const prev = LEVELS[i - 1]
+      expect(cfg.cups).toBeGreaterThanOrEqual(prev.cups)
+      if (cfg.cups === prev.cups) expect(cfg.moves).toBeGreaterThan(prev.moves)
+    })
   })
 })
