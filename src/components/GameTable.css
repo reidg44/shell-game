@@ -75,12 +75,6 @@
 .game__fox { min-height: 70px; }
 
 /* ---- Result cards ---- */
-.confetti {
-  position: absolute;
-  top: 0;
-  animation: ph-fall 1.6s ease-out infinite;
-  pointer-events: none;
-}
 .card__title {
   margin: 0;
   font-weight: 900;

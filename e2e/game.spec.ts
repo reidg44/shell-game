@@ -224,3 +224,31 @@ test('trick levels hold a steady speed through a win streak', async ({ page }) =
     expect(await moveVar()).toBe(first)
   }
 })
+
+test('a win rains happy emoji over the screen; a miss does not', async ({ page }) => {
+  await page.getByTestId('play-btn').click()
+  await page.getByTestId('level-1').click()
+  await playRound(page, 0)
+  const rain = page.getByTestId('emoji-rain')
+  await expect(rain).toBeVisible()
+  await expect(rain.locator('.emoji-rain__drop')).toHaveCount(24)
+  // full-screen, not clipped inside the card
+  const box = (await rain.boundingBox())!
+  expect(box.width).toBe(page.viewportSize()!.width)
+  // still clickable through the rain
+  await page.getByTestId('next-btn').click()
+  await expect(rain).toHaveCount(0)
+
+  await playRound(page, 1)
+  await expect(page.getByTestId('miss-overlay')).toBeVisible()
+  await expect(page.getByTestId('emoji-rain')).toHaveCount(0)
+})
+
+test('no emoji rain when the player prefers reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.getByTestId('play-btn').click()
+  await page.getByTestId('level-1').click()
+  await playRound(page, 0)
+  await expect(page.getByTestId('win-overlay')).toBeVisible()
+  await expect(page.getByTestId('emoji-rain')).toBeHidden()
+})
