@@ -13,6 +13,13 @@ export const LEVELS: readonly LevelConfig[] = [
   { cups: 4, moves: 10, ms: 330, tricks: true },
   { cups: 5, moves: 11, ms: 300 },
   { cups: 5, moves: 13, ms: 260, tricks: true },
+  // Beyond the original handoff (which stops at 6): same curve, up to 7 cups.
+  { cups: 5, moves: 15, ms: 240, tricks: true },
+  { cups: 6, moves: 12, ms: 280 },
+  { cups: 6, moves: 15, ms: 240, tricks: true },
+  { cups: 6, moves: 18, ms: 210, tricks: true },
+  { cups: 7, moves: 16, ms: 220 },
+  { cups: 7, moves: 20, ms: 180, tricks: true },
 ]
 
 export const LEVEL_COUNT = LEVELS.length
@@ -33,8 +40,20 @@ export const MOVE_GAP_MS = 60
 
 export const WIN_STARS = 5
 
-export function moveMs(level: number, speed: Speed): number {
-  return LEVELS[level].ms * SPEED_MULT[speed]
+/** Each consecutive win on a level multiplies move time by this… */
+export const WIN_SPEEDUP = 0.92
+/** …for up to this many wins (0.92^4 ≈ 28% faster), then it holds. */
+export const WIN_SPEEDUP_MAX_WINS = 4
+/** No move is ever shorter than this, so the slide stays trackable. */
+export const MIN_MOVE_MS = 100
+
+/**
+ * ms per shuffle move. `levelWins` (consecutive wins on this level, reset by
+ * a miss or a level change) speeds the shuffle up as the run goes on.
+ */
+export function moveMs(level: number, speed: Speed, levelWins = 0): number {
+  const ramp = WIN_SPEEDUP ** Math.min(levelWins, WIN_SPEEDUP_MAX_WINS)
+  return Math.max(MIN_MOVE_MS, LEVELS[level].ms * SPEED_MULT[speed] * ramp)
 }
 
 export function levelSubLabel(level: number): string {

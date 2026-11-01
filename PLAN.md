@@ -110,3 +110,7 @@ Shared pieces (`RoundButton`, `Pill`, `CtaButton`, `SpeechBubble`, `FoxAvatar`) 
 - **Deploy target** — undecided; the build is static so it can go anywhere.
 
 Estimated total: ~7 focused hours to a shippable, tested v1.
+
+## 6. Deliberate departures from the handoff
+- **12 levels, not 6.** L7–L12 continue the spec's curve (5→7 cups, more moves, faster, tricks on alternating levels); L1–L6 are unchanged. Cup width also caps at `90/(n+1)%` of the arena so 6–7 cups don't overlap on wide screens (never binds for ≤5 cups). `parseSave` unlocks the level after the last starred one, which migrates old saves whose `unlocked` was capped at 6.
+- **Shuffle speeds up on a win run.** `moveMs(level, speed, levelWins)` multiplies by `0.92^min(levelWins, 4)` (≤ ~28% faster), floored at 100ms. `levelWins` already resets on a miss or level change, so the ramp does too.

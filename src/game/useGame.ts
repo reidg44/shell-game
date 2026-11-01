@@ -43,7 +43,7 @@ export function useGame({ save, setSave, speed, rng = Math.random }: Options): G
   positionsRef.current = state.positions
 
   const { phase, step, level, movesLeft, result, streak, levelWins } = state
-  const ms = moveMs(level, speed)
+  const ms = moveMs(level, speed, levelWins)
 
   useEffect(() => {
     const r = rngRef.current

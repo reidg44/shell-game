@@ -102,10 +102,14 @@ export function parseSave(raw: string | null): SaveData {
     ? Array.from({ length: LEVEL_COUNT }, (_, i) => clampInt(s.levelStars?.[i], 0, 3))
     : DEFAULT_SAVE.levelStars.slice()
   const speed = clampInt(s.speed, 0, 2) as Speed
+  // A star on level i means it was beaten, so i+1 must be open. This also
+  // migrates saves from when the game had fewer levels: `unlocked` was capped
+  // at the old count, so beating the old last level never opened the next one.
+  const lastBeaten = levelStars.findLastIndex((n) => n > 0)
   return {
     stars: clampInt(s.stars, 0, Number.MAX_SAFE_INTEGER),
     best: clampInt(s.best, 0, Number.MAX_SAFE_INTEGER),
-    unlocked: clampInt(s.unlocked, 1, LEVEL_COUNT) || 1,
+    unlocked: Math.max(clampInt(s.unlocked, 1, LEVEL_COUNT) || 1, Math.min(LEVEL_COUNT, lastBeaten + 2)),
     levelStars,
     sound: s.sound !== false,
     speed: s.speed == null ? 1 : speed,
